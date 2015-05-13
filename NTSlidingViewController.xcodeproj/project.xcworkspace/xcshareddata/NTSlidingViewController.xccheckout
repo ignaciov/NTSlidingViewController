@@ -10,29 +10,29 @@
 	<string>NTSlidingViewController</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>CD0BFF24-9F3B-4189-A172-895151BE36E3</key>
-		<string>https://github.com/nonstriater/NTSlidingViewController.git</string>
+		<key>EB52603F9BB3A9956D37BC17495B096DF7766DD1</key>
+		<string>https://github.com/ignaciov/NTSlidingViewController.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>NTSlidingViewController.xcodeproj/project.xcworkspace</string>
+	<string>NTSlidingViewController.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>CD0BFF24-9F3B-4189-A172-895151BE36E3</key>
+		<key>EB52603F9BB3A9956D37BC17495B096DF7766DD1</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/nonstriater/NTSlidingViewController.git</string>
+	<string>https://github.com/ignaciov/NTSlidingViewController.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>CD0BFF24-9F3B-4189-A172-895151BE36E3</string>
+	<string>EB52603F9BB3A9956D37BC17495B096DF7766DD1</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>CD0BFF24-9F3B-4189-A172-895151BE36E3</string>
+			<string>EB52603F9BB3A9956D37BC17495B096DF7766DD1</string>
 			<key>IDESourceControlWCCName</key>
 			<string>NTSlidingViewController</string>
 		</dict>

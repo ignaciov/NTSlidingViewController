@@ -15,26 +15,35 @@
 {
     // Override point for customization after application launch.
     UIViewController *vc1 = [[UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil] instantiateInitialViewController];
+    vc1.view.backgroundColor = [UIColor greenColor];
+    
     UIViewController *vc2 = [[UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"vc2"];
+    vc2.view.backgroundColor = [UIColor yellowColor];
+    
     UIViewController *vc3 = [[UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"vc3"];
+    vc3.view.backgroundColor = [UIColor blueColor];
+    
     UIViewController *vc4 = [[UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"vc4"];
+    vc4.view.backgroundColor = [UIColor orangeColor];
+    
     UIViewController *vc5 = [[UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"vc5"];
+    vc5.view.backgroundColor = [UIColor redColor];
     
-//    NTSlidingViewController *sliding = [NTSlidingViewController slidingViewControllerWithTitlesAndControllers:@{
-//                                                                             
-//                                                                             @"推荐":vc1,
-//                                                                             @"精选集":vc2,
-//                                                                             @"排行榜":vc3,
-//                                                                             @"专辑":vc4,
-//                                                                            @"艺人":vc5
-//                                                                             
-//                                                                             }];
+    NTSlidingViewController *sliding = [NTSlidingViewController slidingViewControllerWithTitlesAndControllers:@{
+                                                                             
+                                                                             @"VC 1":[[UINavigationController alloc] initWithRootViewController:vc1],
+                                                                             @"VC 2":vc2,
+                                                                             @"VC 3":vc3,
+                                                                             @"VC 4":vc4,
+                                                                             @"VC 5":vc5
+                                                                             
+                                                                             }];
     
-    NTSlidingViewController *sliding = [[NTSlidingViewController alloc] initSlidingViewControllerWithTitle:@"推荐" viewController:vc1];
-    [sliding addControllerWithTitle:@"精选集" viewController:vc2];
-    [sliding addControllerWithTitle:@"排行榜" viewController:vc3];
-    [sliding addControllerWithTitle:@"专辑" viewController:vc4];
-    [sliding addControllerWithTitle:@"艺人" viewController:vc5];
+//    NTSlidingViewController *sliding = [[NTSlidingViewController alloc] initSlidingViewControllerWithTitle:@"推荐" viewController:vc1];
+//    [sliding addControllerWithTitle:@"精选集" viewController:vc2];
+//    [sliding addControllerWithTitle:@"排行榜" viewController:vc3];
+//    [sliding addControllerWithTitle:@"专辑" viewController:vc4];
+//    [sliding addControllerWithTitle:@"艺人" viewController:vc5];
     sliding.selectedLabelColor = [UIColor redColor];
     sliding.unselectedLabelColor = [UIColor brownColor];
     

@@ -11,7 +11,7 @@
 typedef void (^NTTransitionCompleteBlock)(NSUInteger from,NSUInteger to);
 
 
-@interface NTSlidingViewController : UINavigationController
+@interface NTSlidingViewController : UIViewController
 
 @property(nonatomic,assign) NSUInteger selectedIndex;
 @property(nonatomic,strong) UIColor *selectedLabelColor;

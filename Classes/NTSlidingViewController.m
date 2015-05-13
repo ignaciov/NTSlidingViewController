@@ -135,7 +135,7 @@ static const CGFloat kNavbarButtonScaleFactor = 1.4f;
 	// Do any additional setup after loading the view.
     [self.view setBackgroundColor:[UIColor clearColor]];
     
-    [self.navigationBar addSubview:self.navigationBarView];
+//    [self.navigationBar addSubview:self.navigationBarView];
 
     [self.view addSubview:[self contentScrollView]];
     
@@ -144,49 +144,51 @@ static const CGFloat kNavbarButtonScaleFactor = 1.4f;
 // 动态适配
 // 最多 6 个
 //
--(UIView *)navigationBarView{
-
-    if (!_navigationBarView) {
-        _navigationBarView = [[UIView alloc] initWithFrame:self.navigationBar.bounds];
-        CGFloat barViewWidth = self.view.frame.size.width;
-        CGFloat itemWidth = barViewWidth/kMaximumNumberChildControllers ;
-        NSUInteger itemCount = [self.titles count];
-        CGFloat itemMargin = (barViewWidth - itemCount*itemWidth)/(itemCount+1);
-        for (int i=0; i<itemCount; i++) {
-            UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-            [button setFrame:CGRectMake(i*itemWidth+(i+1)*itemMargin, 0, itemWidth, 44)];
-            [button setTitleColor:self.unselectedLabelColor forState:UIControlStateNormal];
-            [button setTitleColor:self.selectedLabelColor forState:UIControlStateSelected];
-            [button.titleLabel setFont:[UIFont systemFontOfSize:13]];
-            [button.titleLabel setTextAlignment:NSTextAlignmentCenter];
-            [button setTitle:self.titles[i] forState:UIControlStateNormal];
-            button.tag = i+1;
-            [button addTarget:self action:@selector(navigationBarButtonItemClicked:) forControlEvents:UIControlEventTouchUpInside];
-            [_navigationBarView addSubview:button];
-            
-            if (i==0) {
-                [button setTitleColor:self.selectedLabelColor forState:UIControlStateNormal];
-                button.transform = CGAffineTransformIdentity;
-                button.transform = CGAffineTransformMakeScale(kNavbarButtonScaleFactor, kNavbarButtonScaleFactor);
-            }
-            
-        }
-
-    }
-    
-    return _navigationBarView;
-}
+//-(UIView *)navigationBarView{
+//
+//    if (!_navigationBarView) {
+//        _navigationBarView = [[UIView alloc] initWithFrame:self.navigationBar.bounds];
+//        CGFloat barViewWidth = self.view.frame.size.width;
+//        CGFloat itemWidth = barViewWidth/kMaximumNumberChildControllers ;
+//        NSUInteger itemCount = [self.titles count];
+//        CGFloat itemMargin = (barViewWidth - itemCount*itemWidth)/(itemCount+1);
+//        for (int i=0; i<itemCount; i++) {
+//            UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+//            [button setFrame:CGRectMake(i*itemWidth+(i+1)*itemMargin, 0, itemWidth, 44)];
+//            [button setTitleColor:self.unselectedLabelColor forState:UIControlStateNormal];
+//            [button setTitleColor:self.selectedLabelColor forState:UIControlStateSelected];
+//            [button.titleLabel setFont:[UIFont systemFontOfSize:13]];
+//            [button.titleLabel setTextAlignment:NSTextAlignmentCenter];
+//            [button setTitle:self.titles[i] forState:UIControlStateNormal];
+//            button.tag = i+1;
+//            [button addTarget:self action:@selector(navigationBarButtonItemClicked:) forControlEvents:UIControlEventTouchUpInside];
+//            [_navigationBarView addSubview:button];
+//            
+//            if (i==0) {
+//                [button setTitleColor:self.selectedLabelColor forState:UIControlStateNormal];
+//                button.transform = CGAffineTransformIdentity;
+//                button.transform = CGAffineTransformMakeScale(kNavbarButtonScaleFactor, kNavbarButtonScaleFactor);
+//            }
+//            
+//        }
+//
+//    }
+//    
+//    return _navigationBarView;
+//}
 
 - (UIScrollView *)contentScrollView{
 
     if (!_scrollView) {
         
-        _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 64,self.view.frame.size.width  , self.view.frame.size.height-64 )];
-        _scrollView.backgroundColor = [UIColor whiteColor];
+        _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0,self.view.frame.size.width  , self.view.frame.size.height)];
+        _scrollView.backgroundColor = [UIColor purpleColor];
         _scrollView.pagingEnabled = YES;
         _scrollView.alwaysBounceHorizontal = YES;
         _scrollView.contentSize = CGSizeMake(_scrollView.frame.size.width*[self.titles count], _scrollView.frame.size.height);
         _scrollView.delegate = self;
+        
+        NSLog(@"Width: %f - %f", _scrollView.frame.size.width, _scrollView.contentSize.width);
         
         for (int i=0; i<[self.childControllers count]; i++) {
             id obj = [self.childControllers objectAtIndex:i];
@@ -197,6 +199,8 @@ static const CGFloat kNavbarButtonScaleFactor = 1.4f;
                 CGFloat scrollHeight = _scrollView.frame.size.height;
                 [controller.view setFrame:CGRectMake(i*scrollWidth, 0, scrollWidth, scrollHeight)];
                 [_scrollView addSubview:controller.view];
+                
+                NSLog(@"Frame for %d: %@", i, NSStringFromCGRect(controller.view.frame));
             }
       
         }
@@ -241,7 +245,7 @@ static const CGFloat kNavbarButtonScaleFactor = 1.4f;
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
 
     if (0==fmod(scrollView.contentOffset.x,scrollView.frame.size.width)){
-        _selectedIndex =  scrollView.contentOffset.x/scrollView.frame.size.width+1;
+        _selectedIndex =  scrollView.contentOffset.x/scrollView.frame.size.width + 1;
     }
     
     
@@ -307,7 +311,9 @@ static const CGFloat kNavbarButtonScaleFactor = 1.4f;
 
 - (void)transitionToViewControllerAtIndex:(NSUInteger)index{
     
-    [_scrollView setContentOffset:CGPointMake(index*_scrollView.frame.size.width, 0)];
+    [_scrollView setContentOffset:CGPointMake(index*_scrollView.frame.size.width + 1, 0)];
+    
+    NSLog(@"Scroll to: %@", NSStringFromCGPoint(_scrollView.contentOffset));
     
 }
 - (void)transitionToViewController:(UIViewController *)controller{
